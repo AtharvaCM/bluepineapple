@@ -19,11 +19,12 @@
 #include <iostream>
 #include <string>
 
+// string to store result
 std::string RESULT;
 
+// A function which converts max 3 digits to words
 void convertToWords(std::string numString)
 {
-    // 534
     const char *digits_1[20] = {"", " One", " Two", " Three", " Four", " Five", " Six", " Seven", " Eight", " Nine", "Ten",
                                 " Eleven", " Twelve", " Thirteen", " Fourteen", " Fifteen", " Sixteen",
                                 " Seventeen", " Eighteen", " Nineteen"};
@@ -87,6 +88,7 @@ void convertToWords(std::string numString)
     // std::cout << RESULT << std::endl;
 }
 
+// A function which takes a numString and converts it to words
 void convert(std::string numString)
 {
     const char *suffix[] = {"", " THOUSAND,", " MILLION,", " BILLION,", " TRILLION,", " QUADRILLION,", " QUINTRILLION,", " SEXTILLION,",
@@ -136,8 +138,6 @@ int main()
 
     // convert the string
     convert(numString);
-
-    // convertToWords("49");
 
     // print the result
     std::cout << RESULT << std::endl;
