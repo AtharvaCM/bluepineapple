@@ -92,7 +92,9 @@ void convertToWords(std::string numString)
 void convert(std::string numString)
 {
     const char *suffix[] = {"", " THOUSAND,", " MILLION,", " BILLION,", " TRILLION,", " QUADRILLION,", " QUINTRILLION,", " SEXTILLION,",
-                            " SEPTILIION,", " OCTILLION,", " NONILLION,", " DECILLION,"};
+                            " SEPTILIION,", " OCTILLION,", " NONILLION,", " DECILLION,", " UNDECILLION", " DUODECILLION", " TREDECILLION",
+                            " QUATTUORDECILLION", " QUINDECILLION", " SEXDECILLION", " SPETEN-DECILLION", " OCTODECILLION", " NOVEMDECILLION",
+                            " VIGINTILLION"};
 
     int len = numString.length();
     std::string splitString;
