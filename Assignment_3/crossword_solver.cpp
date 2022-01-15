@@ -15,7 +15,11 @@ struct bintree_node
     struct bintree_node *right;
 };
 
+// map for each alphabet
 std::unordered_map<std::string, struct bintree_node *> alphaMap;
+
+// map for known index of string
+std::unordered_map<int, std::string> indexMap;
 
 // create a new node with given word and return the address of the new node
 struct bintree_node *getnode(std::string word)
@@ -47,8 +51,8 @@ public:
         return (root == NULL);
     }
     struct bintree_node *insert(std::string word);
-    void search_words(char start_letter, int word_length);
-    void inorder_search(bintree_node *ptr, char start_letter, int word_length);
+    void search_words(char start_letter, int word_length, std::unordered_map<int, std::string> indexMap);
+    void inorder_search(bintree_node *ptr, char start_letter, int word_length, std::unordered_map<int, std::string> indexMap);
     void inorder_display();
     void inorder(bintree_node *ptr);
 };
@@ -95,16 +99,26 @@ struct bintree_node *Bst::insert(std::string word)
     }
 }
 
-void Bst::inorder_search(struct bintree_node *ptr, char start_letter, int word_length)
+void Bst::inorder_search(struct bintree_node *ptr, char start_letter, int word_length, std::unordered_map<int, std::string> indexMap)
 {
     // std::cout << "zz" << std::endl;
-    if (ptr != NULL)
+    if (ptr == NULL)
+        return;
+    // iterator for the map
+    std::unordered_map<int, std::string>::iterator itr;
+    bool display = true;
+
+    inorder_search(ptr->left, start_letter, word_length, indexMap);
+    if (start_letter == ptr->word[0] && word_length == ptr->length)
     {
-        inorder_search(ptr->left, start_letter, word_length);
-        if (start_letter == ptr->word[0] && word_length == ptr->length)
+        // check for given indices
+        for (itr = indexMap.begin(); itr != indexMap.end(); ++itr)
+            if (std::string(1, ptr->word[itr->first]) != itr->second)
+                display = false;
+        if (display == true)
             std::cout << ptr->word << " ";
-        inorder_search(ptr->right, start_letter, word_length);
     }
+    inorder_search(ptr->right, start_letter, word_length, indexMap);
 }
 
 // displays words starting with the given argument
@@ -119,12 +133,12 @@ void Bst::inorder_search(struct bintree_node *ptr, char start_letter, int word_l
 //         inorder_search(ptr->right, start_letter, word_length);
 // }
 
-void Bst::search_words(char start_letter, int word_length)
+void Bst::search_words(char start_letter, int word_length, std::unordered_map<int, std::string> indexMap)
 {
     struct bintree_node *ptr = alphaMap[std::string(1, start_letter)];
     std::cout << "[+] Searching..." << std::endl;
 
-    inorder_search(ptr, start_letter, word_length);
+    inorder_search(ptr, start_letter, word_length, indexMap);
 }
 
 void Bst::inorder_display()
@@ -146,34 +160,59 @@ void Bst::inorder(struct bintree_node *ptr)
 
 int main()
 {
-    std::string word_array[3700];
-    // read dict from file
+    Bst tree;
+    struct bintree_node *temp = NULL;
+    std::string word;
+
+    // read dict from file and store in tree
     std::ifstream file("dict.txt");
     if (file)
     {
         for (int i = 0; i < 3700; i++)
-            file >> word_array[i];
+        {
+            file >> word;
+            temp = tree.insert(word);
+            // insert into hashmap
+            if (alphaMap.count(std::string(1, word[0])) == 0)
+                alphaMap.insert(std::pair<std::string, struct bintree_node *>(std::string(1, word[0]), temp));
+        }
     }
     else
     {
         std::cerr << "[+] Could not open file dict.txt" << std::endl;
         exit(0);
     }
-
-    Bst tree;
-    struct bintree_node *temp = NULL;
-
-    // insert those words into the tree
-    for (int i = 0; i < 3700; i++)
-    {
-        temp = tree.insert(word_array[i]);
-        // insert into hashmap
-        if (alphaMap.count(std::string(1, word_array[i][0])) == 0)
-            alphaMap.insert(std::pair<std::string, struct bintree_node *>(std::string(1, word_array[i][0]), temp));
-    }
+    file.close();
     std::cout << "[+] Loaded dictionary" << std::endl;
 
-    tree.inorder_display();
+    // tree.inorder_display();
 
-    tree.search_words('s', 6);
+    char start_letter;
+    int word_length;
+    int letter_count;
+    int index;
+    std::string letter;
+
+    std::cout << "\n[+] Enter the start_letter of the word: ";
+    std::cin >> start_letter;
+    std::cout << "\n[+] Enter the length of the string: ";
+    std::cin >> word_length;
+    std::cout << "\n[+] Enter the count of letter you know: ";
+    std::cin >> letter_count;
+    for (int i = 0; i < letter_count; i++)
+    {
+        std::cout << "\n[+] Enter the index of the known letter: ";
+        std::cin >> index;
+        if (index < word_length && index > word_length)
+        {
+            std::cout << "\n[+] Invalid index!" << std::endl;
+            exit(0);
+        }
+        std::cout << "\n[+] Enter the known letter: ";
+        std::cin >> letter;
+        indexMap.insert(std::pair<int, std::string>(index, letter));
+    }
+
+    tree.search_words(start_letter, word_length, indexMap);
+    std::cout << std::endl;
 }
