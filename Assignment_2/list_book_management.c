@@ -33,7 +33,7 @@ struct node *getnode(int id, char *name)
 // init the header node
 void init()
 {
-    // id in the header node will represent the ccount of nodes
+    // id in the header node will represent the count of nodes
     head = getnode(0, "");
 }
 
@@ -65,7 +65,7 @@ void append(int id, char *name)
 void insert(int pos, int id, char *name)
 {
     // if the list is empty just use append()
-    if (head->id == 0 && pos == 1)
+    if ((head->id == 0) && (pos == 1))
     {
         append(id, name);
         return;
@@ -77,7 +77,7 @@ void insert(int pos, int id, char *name)
     struct node *temp = NULL;
 
     // check position
-    if (pos > head->id || pos <= 0)
+    if (pos > head->id + 1 || pos <= 0)
     {
         printf("\n[+] Invalid position passed to Insert function!");
         return;
@@ -100,12 +100,12 @@ void insert(int pos, int id, char *name)
 
 void delete_by_name(char *name)
 {
-    struct node *p = (struct node *)head;
+    struct node *p = head;
     struct node *q = p->next;
     struct node *temp = NULL;
     int name_not_found = 1;
 
-    if (temp->next == NULL)
+    if (p->next == NULL)
     {
         printf("\b[+] The list is empty!");
         return;
@@ -114,7 +114,8 @@ void delete_by_name(char *name)
     // traverse to the required pos
     while (p->next != NULL)
     {
-        if (name_not_found = strcmp(p->next->name, name) == 0)
+        name_not_found = strcmp(p->next->name, name);
+        if (name_not_found == 0)
             break;
         p = p->next;
         q = q->next;
@@ -150,15 +151,16 @@ void search_by_name(char *name)
     // traverse the list
     while (temp->next != NULL)
     {
+        name_not_found = strcmp(temp->next->name, name);
         // break when the name matches
-        if (name_not_found = strcmp(temp->next->name, name) == 0)
+        if (name_not_found == 0)
             break;
         temp = temp->next;
     }
-    if (name_not_found < 0 || name_not_found > 0)
-        printf("\n[+] Book Does Not Exist!");
-    else
+    if (name_not_found == 0)
         printf("\n[+] Book With '%s' Exists!", name);
+    else
+        printf("\n[+] Book Does Not Exist!");
 }
 
 void display_list()
@@ -205,7 +207,7 @@ int main()
         switch (op)
         {
         case 1:
-            printf("\n[+] Enter the book name: ");
+            printf("\n[+] Enter the book id: ");
             scanf("%d", &id);
             printf("\n[+] Enter the book name: ");
             scanf("%s", name);
@@ -213,7 +215,7 @@ int main()
             break;
 
         case 2:
-            printf("\n[+] Enter the book name: ");
+            printf("\n[+] Enter the book id: ");
             scanf("%d", &id);
             printf("\n[+] Enter the book name: ");
             scanf("%s", name);

@@ -31,6 +31,18 @@
 
 #include <iostream>
 
+void getOccurrences(std::string number, int digits[])
+{
+    // iterate over the number
+    for (int i = 0; i < number.length(); i++)
+    {
+        char digit = number[i];
+        int index = digit - '0'; // '0' will be equivalent to int(49)
+        // increment the counter for that respective digit
+        digits[index]++;
+    }
+}
+
 int main()
 {
     // storing number as string
@@ -41,14 +53,7 @@ int main()
     // init array of digits to store the count of each digit (0 - 9)
     int digits[10] = {0};
 
-    // iterate over the number
-    for (int i = 0; i < number.length(); i++)
-    {
-        char digit = number[i];
-        int index = digit - '0'; // '0' will be equivalent to int(49)
-        // increment the counter for that respective digit
-        digits[index]++;
-    }
+    getOccurrences(number, digits);
 
     // print the occurrences
     for (int i = 0; i < 10; i++)

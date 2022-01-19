@@ -121,18 +121,6 @@ void Bst::inorder_search(struct bintree_node *ptr, char start_letter, int word_l
     inorder_search(ptr->right, start_letter, word_length, indexMap);
 }
 
-// displays words starting with the given argument
-// void Bst::search_words(char start_letter, int word_length)
-// {
-//     struct bintree_node *ptr = root;
-//     std::cout << "Searching..." << std::endl;
-
-//     if (std::string(1, start_letter).compare(ptr->word) < 0)
-//         inorder_search(ptr->left, start_letter, word_length);
-//     else
-//         inorder_search(ptr->right, start_letter, word_length);
-// }
-
 void Bst::search_words(char start_letter, int word_length, std::unordered_map<int, std::string> indexMap)
 {
     struct bintree_node *ptr = alphaMap[std::string(1, start_letter)];
