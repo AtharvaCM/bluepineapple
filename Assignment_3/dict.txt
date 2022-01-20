@@ -1,5 +1,5 @@
-machine
 machinery
+machine
 mad
 magazine
 magic
@@ -2738,11 +2738,11 @@ go_off
 go_on
 go_on doing
 go_out
-go_out with
+go_out
 go_over
 go_round
 go_through
-go_through with
+go_through
 go_to
 go_up
 govern
