@@ -6,6 +6,8 @@
 #include <fstream>
 #include <bits/stdc++.h>
 
+bool WORD_NOT_FOUND = true;
+
 struct bintree_node
 {
     struct bintree_node *left;
@@ -15,7 +17,7 @@ struct bintree_node
 };
 
 // map for each alphabet
-// std::unordered_map<std::string, struct bintree_node *> alphaMap;
+std::unordered_map<std::string, struct bintree_node *> alphaMap;
 
 // map for known index of string
 std::unordered_map<int, std::string> indexMap;
@@ -115,17 +117,22 @@ void Bst::inorder_search(struct bintree_node *ptr, int word_length, std::unorder
             if (std::string(1, ptr->word[itr->first]) != itr->second)
                 display = false;
         if (display == true)
+        {
             std::cout << ptr->word << " ";
+            WORD_NOT_FOUND = false;
+        }
     }
     inorder_search(ptr->right, word_length, indexMap);
 }
 
 void Bst::search_words(int word_length, std::unordered_map<int, std::string> indexMap)
 {
-    struct bintree_node *ptr = root;
+    struct bintree_node *ptr = (indexMap.count(0)) ? alphaMap[indexMap[0]] : root;
     std::cout << "[+] Searching..." << std::endl;
 
     inorder_search(ptr, word_length, indexMap);
+    if (WORD_NOT_FOUND)
+        std::cout << "[+] Sorry, no word found!" << std::endl;
 }
 
 void Bst::inorder_display()
@@ -160,8 +167,8 @@ int main()
             file >> word;
             temp = tree.insert(word);
             // insert into hashmap
-            // if (alphaMap.count(std::string(1, word[0])) == 0)
-            //     alphaMap.insert(std::pair<std::string, struct bintree_node *>(std::string(1, word[0]), temp));
+            if (alphaMap.count(std::string(1, word[0])) == 0)
+                alphaMap.insert(std::pair<std::string, struct bintree_node *>(std::string(1, word[0]), temp));
         }
     }
     else
