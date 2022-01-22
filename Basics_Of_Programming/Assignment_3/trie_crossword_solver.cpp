@@ -168,6 +168,7 @@ int main()
 
     std::cout << "\n[+] Enter the pattern to search, type '-' for unknown chars (ex: -a-): ";
     std::cin >> pattern;
+    std::cout << "\n--------------------------------------------------------------------" << std::endl;
 
     // Get starting timepoint
     auto start = high_resolution_clock::now();
@@ -179,7 +180,8 @@ int main()
 
     auto duration = duration_cast<microseconds>(stop - start);
 
-    std::cout << "Time taken by function: "
+    std::cout << "--------------------------------------------------------------------" << std::endl;
+    std::cout << "\n[+] Time taken by function: "
               << duration.count() << " microseconds" << std::endl;
 
     if (!WORD_FOUND)
