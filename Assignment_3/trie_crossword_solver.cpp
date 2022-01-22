@@ -171,7 +171,7 @@ int main()
     std::ifstream file("mini_dict.txt");
     if (file)
     {
-        for (int i = 0; i < 370100; i++)
+        for (int i = 0; i < 100; i++)
         {
             file >> word;
             insert(root, word);
