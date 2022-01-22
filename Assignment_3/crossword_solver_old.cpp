@@ -5,6 +5,10 @@
 #include <string>
 #include <fstream>
 #include <bits/stdc++.h>
+#include <chrono> // calculate time
+using namespace std::chrono;
+
+bool WORD_NOT_FOUND = true;
 
 struct bintree_node
 {
@@ -50,8 +54,8 @@ public:
         return (root == NULL);
     }
     struct bintree_node *insert(std::string word);
-    void search_words(char start_letter, int word_length, std::unordered_map<int, std::string> indexMap);
-    void inorder_search(bintree_node *ptr, char start_letter, int word_length, std::unordered_map<int, std::string> indexMap);
+    void search_words(int word_length, std::unordered_map<int, std::string> indexMap);
+    void inorder_search(bintree_node *ptr, int word_length, std::unordered_map<int, std::string> indexMap);
     void inorder_display();
     void inorder(bintree_node *ptr);
 };
@@ -98,7 +102,7 @@ struct bintree_node *Bst::insert(std::string word)
     }
 }
 
-void Bst::inorder_search(struct bintree_node *ptr, char start_letter, int word_length, std::unordered_map<int, std::string> indexMap)
+void Bst::inorder_search(struct bintree_node *ptr, int word_length, std::unordered_map<int, std::string> indexMap)
 {
     // std::cout << "zz" << std::endl;
     if (ptr == NULL)
@@ -107,25 +111,30 @@ void Bst::inorder_search(struct bintree_node *ptr, char start_letter, int word_l
     std::unordered_map<int, std::string>::iterator itr;
     bool display = true;
 
-    inorder_search(ptr->left, start_letter, word_length, indexMap);
-    if (start_letter == ptr->word[0] && word_length == ptr->length)
+    inorder_search(ptr->left, word_length, indexMap);
+    if (word_length == ptr->length)
     {
         // check for given indices
         for (itr = indexMap.begin(); itr != indexMap.end(); ++itr)
             if (std::string(1, ptr->word[itr->first]) != itr->second)
                 display = false;
         if (display == true)
+        {
             std::cout << ptr->word << " ";
+            WORD_NOT_FOUND = false;
+        }
     }
-    inorder_search(ptr->right, start_letter, word_length, indexMap);
+    inorder_search(ptr->right, word_length, indexMap);
 }
 
-void Bst::search_words(char start_letter, int word_length, std::unordered_map<int, std::string> indexMap)
+void Bst::search_words(int word_length, std::unordered_map<int, std::string> indexMap)
 {
-    struct bintree_node *ptr = alphaMap[std::string(1, start_letter)];
+    struct bintree_node *ptr = (indexMap.count(0)) ? alphaMap[indexMap[0]] : root;
     std::cout << "[+] Searching..." << std::endl;
 
-    inorder_search(ptr, start_letter, word_length, indexMap);
+    inorder_search(ptr, word_length, indexMap);
+    if (WORD_NOT_FOUND)
+        std::cout << "[+] Sorry, no word found!" << std::endl;
 }
 
 void Bst::inorder_display()
@@ -152,7 +161,7 @@ int main()
     std::string word;
 
     // read dict from file and store in tree
-    std::ifstream file("dict.txt");
+    std::ifstream file("mini_dict.txt");
     if (file)
     {
         for (int i = 0; i < 3700; i++)
@@ -166,22 +175,19 @@ int main()
     }
     else
     {
-        std::cerr << "[+] Could not open file dict.txt" << std::endl;
+        std::cerr << "[+] Could not open file!" << std::endl;
         exit(0);
     }
     file.close();
     std::cout << "[+] Loaded dictionary" << std::endl;
 
-    // tree.inorder_display();
+    tree.inorder_display();
 
-    char start_letter;
     int word_length;
     int letter_count;
     int index;
     std::string letter;
 
-    std::cout << "\n[+] Enter the start_letter of the word: ";
-    std::cin >> start_letter;
     std::cout << "\n[+] Enter the length of the string: ";
     std::cin >> word_length;
     std::cout << "\n[+] Enter the count of letter you know: ";
@@ -200,6 +206,18 @@ int main()
         indexMap.insert(std::pair<int, std::string>(index, letter));
     }
 
-    tree.search_words(start_letter, word_length, indexMap);
+    // Get starting timepoint
+    auto start = high_resolution_clock::now();
+
+    tree.search_words(word_length, indexMap);
+
+    // Get ending timepoint
+    auto stop = high_resolution_clock::now();
+
+    auto duration = duration_cast<microseconds>(stop - start);
+
+    std::cout << "Time taken by function: "
+              << duration.count() << " microseconds" << std::endl;
+
     std::cout << std::endl;
 }
