@@ -37,6 +37,7 @@ struct TrieNode *getNode(void)
     return temp;
 }
 
+// insert a word in the trie
 void insert(struct TrieNode *root, std::string key)
 {
     // std::cout << "\t inserting";
@@ -72,6 +73,7 @@ bool search(struct TrieNode *root, std::string key)
     return crawl->isEndOfWord;
 }
 
+// display all the words in the trie
 void display(struct TrieNode *root, std::string str, int level)
 {
     // if node is a leaf node then display the word
@@ -90,13 +92,17 @@ void display(struct TrieNode *root, std::string str, int level)
     }
 }
 
+// searches the trie recursively for pattern and displays the words that match
 void search_words(struct TrieNode *root, std::string pattern, std::string word, int level)
 {
     // std::cout << "@" << std::endl;
-    if (root->isEndOfWord && pattern.empty())
+    if (pattern.empty())
     {
-        WORD_FOUND = true;
-        std::cout << word << std::endl;
+        if (root->isEndOfWord)
+        {
+            WORD_FOUND = true;
+            std::cout << word << std::endl;
+        }
 
         return;
     }
@@ -120,40 +126,10 @@ void search_words(struct TrieNode *root, std::string pattern, std::string word, 
         return;
     }
 
-    for (int i = 0; i < pattern.length(); i++)
+    int index = pattern[0] - 'a';
+    // if there is link available
+    if (root->children[index])
     {
-        int index = pattern[i] - 'a';
-        // if there is link available
-        if (root->children[index])
-        {
-            word.at(level) = index + 'a';
-            search_words(root->children[index], pattern.substr(1), word, level + 1);
-        }
-    }
-}
-
-void search_wrapper(struct TrieNode *root, std::string pattern, std::string word, int level)
-{
-    // if the first letter is a -
-    if (pattern[0] == '-')
-    {
-        std::string new_pattern = pattern.substr(1);
-        level += 1;
-
-        for (int i = 0; i < ALPHABET_SIZE; i++)
-        {
-            // if a child exists
-            if (root->children[i])
-            {
-                word.at(level - 1) = i + 'a';
-                search_words(root->children[i], new_pattern, word, level);
-            }
-        }
-    }
-    else
-    {
-        // else
-        int index = pattern[0] - 'a';
         word.at(level) = index + 'a';
         search_words(root->children[index], pattern.substr(1), word, level + 1);
     }
@@ -162,19 +138,20 @@ void search_wrapper(struct TrieNode *root, std::string pattern, std::string word
 // driver code
 int main()
 {
-    std::string word;
-    std::string str = "                                                           ";
+    std::string temp;
+    std::string word = "                                                 ";
+    std::string pattern;
     int level = 0;
 
     struct TrieNode *root = getNode();
 
-    std::ifstream file("mini_dict.txt");
+    std::ifstream file("alpha_dict.txt");
     if (file)
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 370100; i++)
         {
-            file >> word;
-            insert(root, word);
+            file >> temp;
+            insert(root, temp);
         }
     }
     else
@@ -187,13 +164,15 @@ int main()
 
     // display(root, str, level);
 
-    // Search for different keys
-    search(root, "the") ? std::cout << "Yes\n" : std::cout << "No\n";
+    // search(root, "the") ? std::cout << "Yes\n" : std::cout << "No\n";
+
+    std::cout << "\n[+] Enter the pattern to search, type '-' for unknown chars (ex: -a-): ";
+    std::cin >> pattern;
 
     // Get starting timepoint
     auto start = high_resolution_clock::now();
 
-    search_wrapper(root, "-a-", str, level);
+    search_words(root, pattern, word, level);
 
     // Get ending timepoint
     auto stop = high_resolution_clock::now();
