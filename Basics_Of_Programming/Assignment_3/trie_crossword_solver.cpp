@@ -40,7 +40,6 @@ struct TrieNode *getNode(void)
 // insert a word in the trie
 void insert(struct TrieNode *root, std::string key)
 {
-    // std::cout << "\t inserting";
     struct TrieNode *crawl = root;
 
     for (int i = 0; i < key.length(); i++)
@@ -95,7 +94,6 @@ void display(struct TrieNode *root, std::string str, int level)
 // searches the trie recursively for pattern and displays the words that match
 void search_words(struct TrieNode *root, std::string pattern, std::string word, int level)
 {
-    // std::cout << "@" << std::endl;
     if (pattern.empty())
     {
         if (root->isEndOfWord)
