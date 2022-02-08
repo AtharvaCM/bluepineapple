@@ -39,57 +39,70 @@
         .text-blue {
             color: rgb(97, 94, 255);
         }
+
+        .bg-grey {
+            background-color: rgb(235, 235, 235);
+        }
+
+        .row2-cards-wrapper .card {
+            background-color: rgb(235, 235, 235);
+        }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <span class="material-icons md-light">cloud</span>
-            <a class="navbar-brand" href="#">Logo</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Products
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
-                    </li>
-                </ul>
-                <form class="d-flex me-3">
-                    <input class="form-control me-2" type="email" placeholder="Email" aria-label="Email">
-                    <input class="form-control me-2" type="password" placeholder="Password" aria-label="Password">
-                    <input class="btn btn-light" type="button" value="Sign In">
-                </form>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <span class="material-icons md-light">cloud</span>
+                <a class="navbar-brand" href="#">Logo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Products
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Services</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex me-3">
+                        <input class="form-control me-2" type="email" placeholder="Email" aria-label="Email">
+                        <input class="form-control me-2" type="password" placeholder="Password" aria-label="Password">
+                        <input class="btn btn-light" type="button" value="Sign In">
+                    </form>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
+    <!-- Header END -->
 
     <!-- Main Content -->
-    <div class="container-fluid mt-5 px-4">
-        <div class="row">
+    <main class="container-fluid mt-5">
+        <!-- Row 1 -->
+        <div class="row px-4">
             <!-- Col-1 -->
             <div class="col-md-3">
                 <div class="card">
@@ -109,6 +122,9 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             Dynamically Innovate
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            Objectively Innovate
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             Proactively Envisioned
@@ -136,8 +152,14 @@
 
             <!-- Col-2 -->
             <div class="col-md-6">
+                <!-- Alert -->
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Synergize:</strong> Seamlessly visualize quality intellectual capital!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
                 <!-- Card -->
-                <div class="card mb-3">
+                <div class="card mb-3 border-0">
                     <div class="row g-0">
                         <div class="col-md-2">
                             <img src="https://www.novoceram.com/wp-content/uploads/sites/4/2021/12/dax-anthracite.jpg"
@@ -165,9 +187,10 @@
                         </div>
                     </div>
                 </div>
+                <hr>
 
                 <!-- Card -->
-                <div class="card mb-3">
+                <div class="card mb-3 border-0">
                     <div class="row g-0">
                         <div class="col-md-2">
                             <img src="https://www.novoceram.com/wp-content/uploads/sites/4/2021/12/dax-anthracite.jpg"
@@ -175,10 +198,12 @@
                         </div>
                         <div class="col-md-10">
                             <div class="card-body">
-                                <h5 class="card-title">Premiere Niche Markets</h5>
-                                <p class="card-text">Phosphluroscently engage worldwide methodologies with web-enabled
-                                    technoogy. interacrtively coordinate proactive e-commerce via process-centric
-                                    "outside the box" thinking.</p>
+                                <h5 class="card-title">Proactively Envisioned </h5>
+                                <p class="card-text">Seamlessly visualize quality intellectual capital without superior
+                                    collaboration and idea-sharing. Holistically pontificate installed base portals
+                                    after maintainable products. Proactively envisioned multimedia based expertise and
+                                    cross-media growth strategies.
+                                </p>
                                 <p class="card-text ">
                                     <small class="text-muted d-flex align-items-center">
                                         <span class="material-icons blue">
@@ -195,9 +220,10 @@
                         </div>
                     </div>
                 </div>
+                <hr>
 
                 <!-- Card -->
-                <div class="card mb-3">
+                <div class="card mb-3 border-0">
                     <div class="row g-0">
                         <div class="col-md-2">
                             <img src="https://www.novoceram.com/wp-content/uploads/sites/4/2021/12/dax-anthracite.jpg"
@@ -206,9 +232,10 @@
                         <div class="col-md-10">
                             <div class="card-body">
                                 <h5 class="card-title">Completely Synergize</h5>
-                                <p class="card-text">Phosphluroscently engage worldwide methodologies with web-enabled
-                                    technoogy. interacrtively coordinate proactive e-commerce via process-centric
-                                    "outside the box" thinking.</p>
+                                <p class="card-text">Completely synergize resource taxing relationships via premiere
+                                    niche markets. professionally cultivate one-to-one customer service with robust
+                                    ideas. Dynamically innovate resource-levelling customer service for state of the art
+                                    customer service.</p>
                                 <p class="card-text">
                                     <small class="text-muted d-flex align-items-center">
                                         <span class="material-icons blue">
@@ -229,8 +256,14 @@
 
             <!-- Col-3 -->
             <div class="col-md-3">
+                <!-- Form -->
+                <form class="d-flex me-2">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <input class="btn btn-outline-secondary" type="button" value="Search">
+                </form>
+
                 <!-- Card -->
-                <div class="card">
+                <div class="card mt-3">
                     <div class="card-header d-flex align-items-center">
                         <span class="material-icons">
                             shuffle
@@ -305,7 +338,110 @@
                 </div>
             </div>
         </div>
-        <!-- Main Content END -->
+
+        <!-- Row 2 -->
+        <div class="row bg-grey p-4 ">
+            <!-- Card Group -->
+            <div class="row row-cols-1 row-cols-md-4 g-4 row2-cards-wrapper">
+                <div class="col">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <h5 class="card-title d-flex align-items-center">
+                                <span class="material-icons">
+                                    format_size
+                                </span>
+                                Dynamic
+                            </h5>
+                            <p class="card-text">Collaboratively administrate empowered markets via plug-and-play
+                                networks. Dynamically procastinate B2C users after installed base benefits. Dramatically
+                                visualize customer directed convergence without revolutionary ROI.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <h5 class="card-title d-flex align-items-center">
+                                <span class="material-icons">
+                                    build
+                                </span>
+                                Efficient
+                            </h5>
+                            <p class="card-text">Dramatically maintain clicks-and-mortar solutions without funtional
+                                solutions. Efficiently unleash cross-media information without cross-media value.
+                                Quickly maximize timely deliverables for real-time schemas</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <h5 class="card-title d-flex align-items-center">
+                                <span class="material-icons">
+                                    attach_file
+                                </span>
+                                Complete
+                            </h5>
+                            <p class="card-text">Professionaly cultivate one-to-one customer service with robust ideas.
+                                Completely synergize resource taxing relationships via premiere niche markets.
+                                Dynamically innovate resource-levelling customer service for state of art customer
+                                service.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <h5 class="card-title d-flex align-items-center">
+                                <span class="material-icons">
+                                    photo_camera
+                                </span>
+                                Phosphluroscent
+                            </h5>
+                            <div class="row">
+                                <div class="col">
+                                    <img src="https://www.novoceram.com/wp-content/uploads/sites/4/2021/12/dax-anthracite.jpg"
+                                        alt="card-img" width="110" height="80">
+                                </div>
+                                <div class="col">
+                                    <img src="https://www.novoceram.com/wp-content/uploads/sites/4/2021/12/dax-anthracite.jpg"
+                                        alt="card-img" width="110" height="80">
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col">
+                                    <img src="https://www.novoceram.com/wp-content/uploads/sites/4/2021/12/dax-anthracite.jpg"
+                                        alt="card-img" width="110" height="80">
+                                </div>
+                                <div class="col">
+                                    <img src="https://www.novoceram.com/wp-content/uploads/sites/4/2021/12/dax-anthracite.jpg"
+                                        alt="card-img" width="110" height="80">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Main Content END -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="container-fluid text-center">
+            <nav class="d-flex justify-content-center align-items-center pt-4">
+                <a href="#" class="nav-link">Terms & Conditions</a>
+                |
+                <a href="#" class="nav-link">Privacy Policy</a>
+                |
+                <a href="#" class="nav-link">Contact</a>
+            </nav>
+            <div class="copyright-section pb-4">
+                <p>Copyright @ Example.com 2021</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
 </body>
 
 </html>
