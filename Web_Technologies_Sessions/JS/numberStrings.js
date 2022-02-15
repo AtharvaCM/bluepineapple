@@ -15,12 +15,19 @@ function stringContainsNumber(inputString) {
   return false;
 }
 
+function getStringsContainingNumbers(inputArray) {
+  let resultArray = [];
+
+  inputArray.forEach((element) => {
+    if (stringContainsNumber(element)) {
+      resultArray.push(element);
+    }
+  });
+
+  return resultArray;
+}
+
 const inputArray = ["hellow", "world", "shade45", "9to5", "react is awesome"];
 
-inputArray.forEach((element) => {
-  console.log(
-    stringContainsNumber(element)
-      ? `${element} string contains a number`
-      : `${element} string does not contains a number`
-  );
-});
+let result = getStringsContainingNumbers(inputArray);
+console.log(result);

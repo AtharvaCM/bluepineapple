@@ -4,6 +4,10 @@
 // output: 3 boomerangs in this sequence:  [3, 7, 3], [1, 5, 1], [2, -2, 2]
 
 function isBoomerang(arr) {
+  if (arr.length != 3) {
+    console.log("invalid array length passed to isBoomerang function");
+    return;
+  }
   // console.log(arr);
   return arr[0] == arr[2] ? true : false;
 }
