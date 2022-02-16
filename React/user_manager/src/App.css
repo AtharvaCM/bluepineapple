@@ -1,8 +1,24 @@
 .App {
+  height: 100vh;
+}
+
+.App > .user-page-container {
+  height: inherit;
+}
+.app-header {
+  text-align: center;
+  padding-top: 2rem;
+}
+
+.app-container {
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 100vh;
+  /* height: inherit; */
+}
+
+a {
+  text-decoration: none;
 }
 
 .nav-component {
@@ -18,8 +34,35 @@
 .users-table {
   width: 100%;
   height: 70vh;
+  /* table-layout: fixed; */
 }
+
 /* .users-table td,
 th {
   border: 1px solid black;
 } */
+
+.floating-button {
+  background: #677;
+  border: none;
+  width: 160px;
+  height: 60px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  color: white;
+}
+.floating-button:hover {
+  color: aqua;
+}
+
+.button-danger {
+  color: crimson;
+}
+.button-danger:hover {
+  color: darkred;
+}

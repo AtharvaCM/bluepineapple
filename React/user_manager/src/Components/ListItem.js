@@ -27,7 +27,9 @@ const ListItem = ({ user }) => {
         <Link to={`/user/edit/${user.id}`}>Edit</Link>
       </td>
       <td>
-        <Link to={`/user/delete/${user.id}`}>Delete</Link>
+        <Link to={`/user/delete/${user.id}`} className="button-danger">
+          Delete
+        </Link>
       </td>
     </tr>
   );

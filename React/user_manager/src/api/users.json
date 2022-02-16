@@ -1,26 +1,31 @@
 [
     {
         "id": "1",
-        "name": "Atharva",
-        "email": "necrons999@gmail.com",
-        "mobile": "9168066596"
+        "name": "Legolas",
+        "email": "fancyelf@gmail.com",
+        "mobile": "9163457656",
+        "avatar_url": "https://wallpaperaccess.com/full/827582.jpg"
     },
     {
         "id": "2",
-        "name": "John",
-        "email": "john@gmail.com",
-        "mobile": "9168334596"
+        "name": "Boromir",
+        "email": "nedstark@winterfell.com",
+        "mobile": "9168334596",
+        "avatar_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3J94bB45I2AMUXYudUvbe2TL7JwNufFbd_g&usqp=CAU"
     },
     {
         "id": "3",
-        "name": "Jay",
-        "email": "jay@bluepineapple.com",
-        "mobile": "8768066236"
+        "name": "Gandalf",
+        "email": "thewhitewizard@bluepineapple.com",
+        "mobile": "8768066236",
+        "avatar_url": "https://static.wikia.nocookie.net/lotr/images/e/e7/Gandalf_the_Grey.jpg/revision/latest?cb=20121110131754"
+
     },
     {
         "id": "4",
-        "name": "Avinash",
-        "email": "avinash@bluepineapple.com",
-        "mobile": "7362456374"
+        "name": "Frodo Baggins",
+        "email": "frodooftheshire@gmail.com",
+        "mobile": "7362456374",
+        "avatar_url": "https://static.wikia.nocookie.net/lotr/images/8/8e/Frodo_ring.jpeg/revision/latest?cb=20181026105306"
     }
 ]
