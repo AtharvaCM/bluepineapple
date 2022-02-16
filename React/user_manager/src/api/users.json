@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1",
+        "name": "Atharva",
+        "email": "necrons999@gmail.com",
+        "mobile": "9168066596"
+    },
+    {
+        "id": "2",
+        "name": "John",
+        "email": "john@gmail.com",
+        "mobile": "9168334596"
+    },
+    {
+        "id": "3",
+        "name": "Jay",
+        "email": "jay@bluepineapple.com",
+        "mobile": "8768066236"
+    },
+    {
+        "id": "4",
+        "name": "Avinash",
+        "email": "avinash@bluepineapple.com",
+        "mobile": "7362456374"
+    }
+]
