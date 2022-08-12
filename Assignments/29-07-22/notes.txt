@@ -1,0 +1,31 @@
+write a babel script in an HTML for a small react component
+
+// webpack & vite are the builders
+
+write a function which converts words to camelCase (sentense, delimeter = ' ')
+
+// check how to break a line in multiple lines in yo editor 
+
+
+UX test - 14/16
+
+1 color wheel warm n cool - c R
+2 hex additive - false R
+3 start black to white - a R
+4 #FFFFFF hex - a all primary R
+5 shade - a hue + black R
+6 monochromatic - c same color diff tint R
+7 chart data colors - b fasle R
+8 - divergent R
+9 CHROMOSTEROPSIS - d black n white W (c RGB)
+10 color blindness - W (red green, blue yellow)
+11 stand out info - c cues, d diff color for 1 item R
+12 desktop vision - c both central &  peripheral R
+13 taxonomy - c group and label R
+14 types for organizing info - a matrix, b sequential R
+15 pinball for search engine page - true R
+16 table scanning patttern - d lawn mower R
+
+HTML - 19/20
+
+CSS - 13/16

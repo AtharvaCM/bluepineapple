@@ -1,0 +1,24 @@
+{
+    "collection" : [
+        {
+            "name": "India",
+            "code": "IND"
+          },
+          {
+            "name": "United States",
+            "code": "US"
+          },
+          {
+            "name": "United Kingdom",
+            "code": "UK"
+          },
+          {
+            "name": "Australia",
+            "code": "AUS"
+          },
+          {
+            "name": "Pakistan",
+            "code": "PAK"
+          }
+    ]
+}

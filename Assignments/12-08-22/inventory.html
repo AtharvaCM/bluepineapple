@@ -1,0 +1,270 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <!-- Roboto Font -->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  />
+  <!-- W3 CSS CDN -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
+  <script type="text/babel">
+    const PART_PRICE = [
+      {
+        p_no: 100,
+        price: 2,
+      },
+      {
+        p_no: 101,
+        price: 5,
+      },
+      {
+        p_no: 102,
+        price: 10,
+      },
+      {
+        p_no: 103,
+        price: 3,
+      },
+    ];
+
+    const LOC_PART_QTY = [
+      {
+        loc_id: 121,
+        p_no: 100,
+        qty: 5,
+      },
+      {
+        loc_id: 122,
+        p_no: 101,
+        qty: 12,
+      },
+      {
+        loc_id: 123,
+        p_no: 102,
+        qty: 8,
+      },
+      {
+        loc_id: 121,
+        p_no: 103,
+        qty: 15,
+      },
+      {
+        loc_id: 122,
+        p_no: 100,
+        qty: 50,
+      },
+      {
+        loc_id: 123,
+        p_no: 100,
+        qty: 33,
+      },
+      {
+        loc_id: 121,
+        p_no: 102,
+        qty: 47,
+      },
+    ];
+
+    const LOC_ID_NAME = [
+      {
+        loc_id: 121,
+        loc_name: "ABC",
+      },
+      {
+        loc_id: 122,
+        loc_name: "XYZ",
+      },
+      {
+        loc_id: 123,
+        loc_name: "PQR",
+      },
+    ];
+
+    // helper function to get location name from location id, returns a string
+    const getLocationName = (locationId) => {
+      const location = LOC_ID_NAME.find((loc) => loc.loc_id === locationId);
+      return location.loc_name;
+    };
+
+    // helper function to get locations of a part, returns array of locations
+    const getLocations = (partNo) => {
+      if (!partNo || isNaN(partNo)) {
+        console.log("Inavlid part number");
+        return;
+      }
+
+      const locations = LOC_PART_QTY.filter((loc) => loc.p_no === partNo);
+      const locationsWithName = locations.map((loc) => {
+        // append loc_name for correspongind loc_id
+        return {
+          ...loc,
+          loc_name: getLocationName(loc.loc_id),
+        };
+      });
+
+      return locationsWithName;
+    };
+
+    let allItems = [];
+
+    // for every part, store info for that map
+    PART_PRICE.forEach((part) => {
+      // construct object to insert in map
+      allItems.push({
+        p_no: part.p_no,
+        price: part.price,
+        locations: getLocations(+part.p_no),
+      });
+    });
+
+    function App() {
+      const [inventoryList, setInventoryList] = React.useState(allItems);
+      const [locationIds, setLocationIds] = React.useState([121, 122, 123]);
+      const [toggle, setToggle] = React.useState(false);
+
+      const toggleView = () => {
+        setToggle((prevState) => !prevState);
+      };
+
+      return (
+        <div>
+          <div className="w3-container w3-margin w3-center">
+            <button onClick={toggleView}>Toggle View</button>
+          </div>
+
+          {/* First Table*/}
+          {toggle && (
+            <div className="w3-container">
+              <table className="w3-table-all">
+                <thead>
+                  <tr>
+                    <th rowSpan="2">Part No</th>
+                    <th rowSpan="2">Price</th>
+                    <th colSpan="3" className="w3-center">
+                      Locations (Qty)
+                    </th>
+                  </tr>
+                  <tr>
+                    <th>{locationIds[0]}</th>
+                    <th>{locationIds[1]}</th>
+                    <th>{locationIds[2]}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {inventoryList.map((row) => (
+                    <tr
+                      key={row.p_no}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <td>{row.p_no}</td>
+                      <td>{row.price}</td>
+                      <td>{row.locations[0]?.qty || 0}</td>
+                      <td>{row.locations[1]?.qty || 0}</td>
+                      <td>{row.locations[2]?.qty || 0}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          {/* Second Table*/}
+          {!toggle && (
+            <div className="w3-container">
+              <table className="w3-table-all">
+                <thead>
+                  <tr>
+                    <th rowSpan="3">Location ID</th>
+                    <th colSpan="8" className="w3-center">
+                      Parts
+                    </th>
+                  </tr>
+                  <tr>
+                    <th colSpan="2" className="w3-center">
+                      {inventoryList[0].p_no}
+                    </th>
+                    <th colSpan="2" className="w3-center">
+                      {inventoryList[1].p_no}
+                    </th>
+                    <th colSpan="2" className="w3-center">
+                      {inventoryList[2].p_no}
+                    </th>
+                    <th colSpan="2" className="w3-center">
+                      {inventoryList[3].p_no}
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>Price</td>
+                    <td>Qty</td>
+
+                    <td>Price</td>
+                    <td>Qty</td>
+
+                    <td>Price</td>
+                    <td>Qty</td>
+
+                    <td>Price</td>
+                    <td>Qty</td>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <th>{locationIds[0]}</th>
+                    <td>{inventoryList[0].price}</td>
+                    <td>{inventoryList[0].locations[0]?.qty || 0}</td>
+
+                    <td>{inventoryList[1].price}</td>
+                    <td>{inventoryList[1].locations[0]?.qty || 0}</td>
+
+                    <td>{inventoryList[2].price}</td>
+                    <td>{inventoryList[2].locations[0]?.qty || 0}</td>
+
+                    <td>{inventoryList[3].price}</td>
+                    <td>{inventoryList[3].locations[0]?.qty || 0}</td>
+                  </tr>
+
+                  <tr>
+                    <th>{locationIds[1]}</th>
+                    <td>{inventoryList[0].price}</td>
+                    <td>{inventoryList[0].locations[1]?.qty || 0}</td>
+
+                    <td>{inventoryList[1].price}</td>
+                    <td>{inventoryList[1].locations[1]?.qty || 0}</td>
+
+                    <td>{inventoryList[2].price}</td>
+                    <td>{inventoryList[2].locations[1]?.qty || 0}</td>
+
+                    <td>{inventoryList[3].price}</td>
+                    <td>{inventoryList[3].locations[1]?.qty || 0}</td>
+                  </tr>
+
+                  <tr>
+                    <th>{locationIds[2]}</th>
+                    <td>{inventoryList[0].price}</td>
+                    <td>{inventoryList[0].locations[2]?.qty || 0}</td>
+
+                    <td>{inventoryList[1].price}</td>
+                    <td>{inventoryList[1].locations[2]?.qty || 0}</td>
+
+                    <td>{inventoryList[2].price}</td>
+                    <td>{inventoryList[2].locations[2]?.qty || 0}</td>
+
+                    <td>{inventoryList[3].price}</td>
+                    <td>{inventoryList[3].locations[2]?.qty || 0}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById("root"));
+  </script>
+</body>
